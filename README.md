@@ -49,6 +49,7 @@
 ### Association
 
 - belongs_to :user
+- has_one :card
 
 ## cards(購入記録)
 
@@ -60,4 +61,5 @@
 ### Association
 
 - belongs_to :user
+- belongs_to :product
 - has_one :destination
