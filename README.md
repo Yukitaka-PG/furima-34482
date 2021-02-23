@@ -30,8 +30,7 @@
 
 ### Association
 
-
-- has_many :cards
+- belong_to :card
 
 ## Products（商品情報）
 
@@ -61,4 +60,4 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :destination
+- has_one :destination
