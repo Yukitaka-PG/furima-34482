@@ -9,7 +9,7 @@
 | family_name          | string | null: false               |
 | first_name_katakana  | string | null: false               |
 | family_name_katakana | string | null: false               |
-| Birthday             | string | null: false               |
+| birthday             | date   | null: false               |
 
 ### Association
 
@@ -18,19 +18,19 @@
 
 ## destinations(配送先情報)
 
-| Column       | Type       | Options                        |
-|--------------|----------- |--------------------------------|
-| postal_code  | string     | null: false                    |
-| prefecture   | string     | null: false                    |
-| city         | string     | null: false                    |
-| address      | string     | null: false                    |
-| house_name   | string     |                                |
-| phone_number | string     | null: false                    |
-| user_id      | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+|---------------|----------- |--------------------------------|
+| postal_code   | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| house_name    | string     |                                |
+| phone_number  | string     | null: false                    |
+| card          | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
+
 - has_many :cards
 
 ## Products（商品情報）
@@ -38,14 +38,14 @@
 | Column              | Type       | Options                        |
 |---------------------|----------- |------------------------------- |
 | title               | string     | null: false                    |
-| text                | string     | null: false                    |
+| text                | text       | null: false                    |
 | product_category_id | integer    | null: false                    |
-| product_status      | string     | null: false                    |
-| burden              | string     | null: false                    |
-| area                | string     | null: false                    |
-| days                | string     | null: false                    |
+| product_status_id   | integer    | null: false                    |
+| burden_id           | integer    | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| days_id             | integer    | null: false                    |
 | price               | string     | null: false                    |
-| user_id             | references | null: false, foreign_key: true |
+| user                | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -53,10 +53,10 @@
 
 ## cards(購入記録)
 
-| Column      | Type   | Options                         |
-|-------------|--------|---------------------------------|
-| user_id     | integer | null: false, foreign_key: true |
-| customer_id | string  | null: false                    |
+| Column      | Type       | Options                         |
+|-------------|------------|---------------------------------|
+| user        | references | null: false, foreign_key: true  |
+| product     | references | null: false, foreign_key: true  |
 
 ### Association
 
