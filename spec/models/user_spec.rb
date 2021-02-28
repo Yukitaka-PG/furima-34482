@@ -57,8 +57,8 @@ RSpec.describe User, type: :model do
       end
 
       it 'パスワードとパスワード（確認用）は、値の一致が必須であること' do
-        @user.password = '123456'
-        @user.password_confirmation = '1234567'
+        @user.password = 'a12345'
+        @user.password_confirmation = 'a123456'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
