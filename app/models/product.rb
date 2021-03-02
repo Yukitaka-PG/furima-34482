@@ -16,9 +16,11 @@ class Product < ApplicationRecord
     validates :product_category_id, numericality: { other_than: 1 } 
     validates :product_status_id, numericality: { other_than: 1 } 
     validates :burden_id, numericality: { other_than: 1 } 
-    validates :prefecture_id
+    validates :prefecture_id, numericality: { other_than: 1 }
     validates :days_id, numericality: { other_than: 1 } 
-    validates :price, format: { with: /\A[a-zA-Z0-9]+\z/, message: "半角英数を使用してください"}
+    validates :price, numericality: {with: /\A[０−９]+\z/, message: "半角数字を使用してください"}
     validates :user
   end
+
+    validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message:"300以上9999999以下で入力してください"}
 end
