@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe Product, type: :model do
   describe '商品出品機能' do
     before do
-      @user = FactoryBot.create(:user)
-      @product = FactoryBot.build(:product, user_id: @user.id)
+      @product = FactoryBot.build(:product)
     end
 
     context '登録できる時' do
