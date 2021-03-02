@@ -86,6 +86,18 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include("Price 半角数字を使用してください")
       end
+
+      it '販売価格は半角英数混合では登録できないこと' do
+        @product.price = 'a100'
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price 半角数字を使用してください")
+      end
+
+      it '販売価格は半角英語だけでは登録できないこと' do
+        @product.price = 'aaaa'
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price 半角数字を使用してください")
+      end
     end
   end
   
