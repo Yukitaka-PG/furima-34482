@@ -1,10 +1,10 @@
 class CardsController < ApplicationController
 
   def index
-    @card = Card.new
+    @card = Card.all
   end
 
   def create
-    
+    binding.pry
   end
 end
