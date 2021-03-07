@@ -11,7 +11,7 @@ class DestinationCard
     validates :house_name
     validates :phone_number, format: {with: /\A\d{10}\z|\A\d{11}\z/ , message: "is invalid."}
   end
-    validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
+    validates :prefecture_id, numericality: {other_than: 1, message: "must be other than 1"}
   
   def save
     card = Card.create(user_id: user_id, product_id: product_id)
