@@ -15,6 +15,6 @@ class DestinationCard
   
   def save
     card = Card.create(user_id: user_id, product_id: product_id)
-    Destination.create(postal_code: postal_code, city: city, address: address, house_name: house_name, phone_number: phone_number, card_id: card.id)
+    Destination.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, house_name: house_name, phone_number: phone_number, card_id: card.id)
   end
 end

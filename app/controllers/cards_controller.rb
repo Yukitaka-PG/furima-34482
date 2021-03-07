@@ -17,6 +17,6 @@ class CardsController < ApplicationController
   private
 
   def destination_card_params
-    params.permit(:destination_card).permit(:postal_code, :city, :address, :house_name, :phone_number, :burden_id, :prefecture_id, :product_id).merge(user_id: current_user.id)
+    params.require(:destination_card).permit(:postal_code, :city, :address, :house_name, :phone_number, :burden_id, :prefecture_id).merge(user_id: current_user.id, product_id: params[:product_id])
   end
 end
