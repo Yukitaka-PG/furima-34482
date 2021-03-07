@@ -6,7 +6,8 @@ class CardsController < ApplicationController
 
   def create
     @destination_card = DestinationCard.new(destination_card_params)
-    if @destination_card.save
+    if @destination_card.valid?
+      @destination_card.save
       redirect_to root_path
     else
       render :index
