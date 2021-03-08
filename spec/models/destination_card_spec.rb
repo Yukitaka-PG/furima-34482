@@ -61,6 +61,12 @@ RSpec.describe DestinationCard, type: :model do
         @destination_card.valid?
         expect(@destination_card.errors.full_messages).to include("Phone number is invalid.")
       end
+
+      it 'クレジットカード情報が必須であること' do
+        @destination_card.token = ''
+        @destination_card.valid?
+        expect(@destination_card.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
