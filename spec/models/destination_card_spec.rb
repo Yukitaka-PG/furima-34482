@@ -68,6 +68,12 @@ RSpec.describe DestinationCard, type: :model do
         expect(@destination_card.errors.full_messages).to include("Phone number is invalid.")
       end
 
+      it '電話番号は全角数字だと登録できないこと' do
+        @destination_card.phone_number = '０９０１２３４５６７８'
+        @destination_card.valid?
+        expect(@destination_card.errors.full_messages).to include("Phone number is invalid.")
+      end
+
       it 'クレジットカード情報が必須であること' do
         @destination_card.token = ''
         @destination_card.valid?

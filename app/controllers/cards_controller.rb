@@ -1,13 +1,11 @@
 class CardsController < ApplicationController
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_product, only: [:index, :create]
-  before_action :move_to_index, only: [:index]
+  before_action :move_to_index, only: [:index, :create]
+  before_action :redirect_root, only: [:index, :create]
 
   def index
     @destination_card = DestinationCard.new
-    if current_user == @product.user
-      redirect_to root_path
-    end
   end
 
   def create
@@ -42,6 +40,12 @@ class CardsController < ApplicationController
 
   def move_to_index
     unless @product.card.blank?
+      redirect_to root_path
+    end
+  end
+
+  def redirect_root
+    if current_user == @product.user
       redirect_to root_path
     end
   end
