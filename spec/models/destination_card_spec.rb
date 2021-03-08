@@ -62,10 +62,28 @@ RSpec.describe DestinationCard, type: :model do
         expect(@destination_card.errors.full_messages).to include("Phone number is invalid.")
       end
 
+      it '電話番号にハイフンがあると登録できない' do
+        @destination_card.phone_number = '090-1234567'
+        @destination_card.valid?
+        expect(@destination_card.errors.full_messages).to include("Phone number is invalid.")
+      end
+
       it 'クレジットカード情報が必須であること' do
         @destination_card.token = ''
         @destination_card.valid?
         expect(@destination_card.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'user_idが存在しない場合、購入できないこと' do
+        @destination_card.user_id = ''
+        @destination_card.valid?
+        expect(@destination_card.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'product_idが存在しない場合、購入できないこと' do
+        @destination_card.product_id = ''
+        @destination_card.valid?
+        expect(@destination_card.errors.full_messages).to include("Product can't be blank")
       end
     end
   end
