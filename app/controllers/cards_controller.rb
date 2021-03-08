@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   before_action :set_product, only: [:index, :create]
+  before_action :move_to_index, only: [:index]
 
   def index
     @destination_card = DestinationCard.new
@@ -33,5 +34,11 @@ class CardsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id])
+  end
+
+  def move_to_index
+    unless user_signed_in? && @product.card.blank?
+      redirect_to root_path
+    end
   end
 end
