@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_product only: [:index, :create]
+  before_action :set_product, only: [:index, :create]
 
   def index
     @destination_card = DestinationCard.new
